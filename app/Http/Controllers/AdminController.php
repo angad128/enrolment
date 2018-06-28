@@ -13,7 +13,11 @@ class AdminController extends Controller
 {   
     // view admin profile
     public function viewprofile(){
-        return view('admin.profile');
+        $id = Session::get('admin_id');
+        $result = DB::table('admin_tbl')
+                    ->where('admin_id',$id)
+                    ->get();
+        return view('admin.profile',['result'=>$result]);
     }
 
 
@@ -54,6 +58,8 @@ class AdminController extends Controller
     {
         Session::put('admin_name',null);
         Session::put('admin_id',null);
+        Session::put('student_name',null);
+        Session::put('student_id',null);
         return redirect('/backend');
     }
 
@@ -70,7 +76,31 @@ class AdminController extends Controller
     	
     }
 
-   
+    public function setting(){
+        $id = Session::get('admin_id');
+        $result = DB::table('admin_tbl')
+                    ->where('admin_id',$id)
+                    ->get();
+        return view('admin.setting',['result'=>$result]);
+    }
+
+    public function updateAdmin(Request $request) {
+        $data = array();
+            $data['admin_name'] = $request->admin_name;
+            $data['admin_phone'] = $request->admin_phone;
+            $data['admin_email'] = $request->admin_email;
+            $data['admin_password'] = md5($request->admin_password);
+
+
+        $result = DB::table('admin_tbl')->where('admin_id', $request->admin_id)->update($data);
+        if($result){
+            Session::put('exception','Admin Details Updated Successfully.');
+            return Redirect::to('/setting');  
+        } else {
+            Session::put('exception','Admin Details Failed to Updated.');
+            return Redirect::to('/setting');  
+        }
+    }
 
 
   

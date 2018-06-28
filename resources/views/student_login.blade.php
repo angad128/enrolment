@@ -18,20 +18,20 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="/studentDashboard">
       <h1 class="h3 mb-3 font-weight-normal">Student Signin</h1>
-     @if(count($errors)>0)
+      <?php $exception = Session::get('exception');?>
+      @if($exception)
       <div class="alert alert-danger">
-        @foreach($errors->all() as $error)
-          <p>{{  $error }}</p>
-        @endforeach
+          <p>{{$exception}}</p>
+          <?php Session::put('exception',null);?>
       </div>
       @endif
       {{ csrf_field() }}
-      <label for="inputEmail" class="" style="float: left;font-weight: 600;">Username or Email</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputEmail" na class="" style="float: left;font-weight: 600;">Email</label>
+      <input type="email" name="student_email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="" style="float: left;font-weight: 600;">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" id="inputPassword" class="form-control" name="student_password" placeholder="Password" required>
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
             <label>

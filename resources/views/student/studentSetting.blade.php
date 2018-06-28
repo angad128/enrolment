@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('studentLayout')
 
 @section('content')
 	            <div class="row dashboard">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> Edit Admin</h1>
+                    <h1 class="page-header"> Edit Student</h1>
                 </div>
                 <?php $exception = Session::get('exception');?>
 	            @if($exception)
@@ -19,45 +19,45 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Edit Admin Info
+                            Edit Student Info
                         </div>
 
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                     @foreach($result as $key)
-                                    <form role="form" method="POST" action="/updateAdmin" enctype="multipart/form-data">
-                                        <input type="hidden" name="admin_id" value="{{$key->admin_id}}">
+                                    <form role="form" method="POST" action="/updateStudent" enctype="multipart/form-data">
+                                        <input type="hidden" name="student_id" value="{{$key->student_id}}">
                                         
-                                        <div class="row">                                          
+                                        <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Admin Name</label>
-                                                    <input name="admin_name" type="text" class="form-control" placeholder="{{$key->admin_name}}" value="{{$key->admin_name}}">
-                                                    <p class="help-block">Admin Name Here.</p>
+                                                    <label>Student Phone</label>
+                                                    <input name="student_phone" type="text" class="form-control" placeholder="{{$key->student_phone}}" value="{{$key->student_phone}}">
+                                                    <p class="help-block">Student Contact Number.</p>
                                                  </div>
                                             </div>
+                                           
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>admin Phone</label>
-                                                    <input name="admin_phone" type="text" class="form-control" placeholder="{{$key->admin_phone}}" value="{{$key->admin_phone}}">
-                                                    <p class="help-block">admin Contact Number.</p>
-                                                 </div>
+                                                    <label>Insert Image(Browse)</label>
+                                                    <input name="student_image" type="file" placeholder="{{$key->student_image}}" value="{{$key->student_image}}">
+                                                </div>
                                             </div>
                                         </div>                                        
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>admin Email</label>
-                                                    <input name="admin_email" type="email" class="form-control" placeholder="{{$key->admin_email}}" value="{{$key->admin_email}}">
-                                                    <p class="help-block">Admin Email here.</p>
+                                                    <label>Student Email</label>
+                                                    <input name="student_email" type="email" class="form-control" placeholder="{{$key->student_email}}" value="{{$key->student_email}}">
+                                                    <p class="help-block">Student Email here.</p>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                                     <div class="form-group">
-                                                        <label>admin Password</label>
-                                                        <input  value="{{md5($key->admin_password)}}" type="password" name="admin_password" class="form-control">
+                                                        <label>Student Password</label>
+                                                        <input  value="{{md5($key->student_password)}}" type="password" name="student_password" class="form-control">
                                                     </div>
                                                 </div>
                                                 
